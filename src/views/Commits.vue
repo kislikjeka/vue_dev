@@ -1,7 +1,10 @@
 <template>
   <div class="Commits">
-    <h1 class="subheading grey--text mt-4">Commits</h1>
     <v-container>
+      <h1 class="subheading grey--text my-4">
+        Commits of
+        <span class="text-weight-bold text-uppercase">{{repo}}</span>
+      </h1>
       <v-layout row wrap>
         <v-flex xs12 v-for="com in commits" :key="com.sha">
           <v-card class="pa-1 ma-2">
