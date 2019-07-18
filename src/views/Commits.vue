@@ -33,38 +33,8 @@
             <td class="text-xs-left">{{ props.item.commit.message }}</td>
             <td class="text-xs-left">{{ new Date(props.item.commit.author.date).toLocaleString()}}</td>
           </template>
-<<<<<<< HEAD
-          <v-divider></v-divider>
-          <v-card>
-            <v-layout row wrap>
-              <v-flex xs12 md4>
-                <v-subheader>Author:</v-subheader>
-                <v-card-text>
-                  <v-avatar size="36" v-if="com.author !=null">
-                    <img v-bind:src="com.author.avatar_url" />
-                  </v-avatar>
-                  <v-avatar size="36" v-else>
-                    <v-icon color="indigo">person</v-icon>
-                  </v-avatar>
-                  <span class="pl-2">{{com.commit.author.name}}</span>
-                </v-card-text>
-              </v-flex>
-              <v-flex xs12 md4>
-                <v-subheader>Message:</v-subheader>
-                <v-card-text>{{com.commit.message}}</v-card-text>
-              </v-flex>
-              <v-flex xs12 md4>
-                <v-subheader>Date/Time:</v-subheader>
-                <v-card-text>{{com.commit.author.date.split("T")[0] + "/" +com.commit.author.date.split("T")[1].split("Z")[0]}}</v-card-text>
-              </v-flex>
-            </v-layout>
-          </v-card>
-        </v-expansion-panel-content>
-      </v-expansion-panel>
-=======
         </v-data-table>
       </v-card>
->>>>>>> dev
     </v-container>
   </div>
 </template>
