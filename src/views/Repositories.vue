@@ -2,9 +2,13 @@
   <div class="repositories">
     <loading :active.sync="isLoading" :is-full-page="fullPage"></loading>
     <v-container class="my-3">
-      <h1 class="subheading grey--text my-4">Repositories</h1>
       <v-layout row wrap>
-        <v-flex xs12 sm6 md4 v-for="repo in repos" :key="repo.name">
+        <h1 class="subheading grey--text my-4">Repositories</h1>
+        <v-spacer></v-spacer>
+        <v-text-field v-model="search" append-icon="search" label="Search" single-line hide-details></v-text-field>
+      </v-layout>
+      <v-layout row wrap>
+        <v-flex xs12 sm12 md6 v-for="repo in filtredRepos" :key="repo.name">
           <v-card class="pa-1 ma-2" :to="{name: 'commits', params: {repo: repo.name}}">
             <v-layout row wrap>
               <v-flex xs12 sm6>
@@ -32,6 +36,7 @@ import "vue-loading-overlay/dist/vue-loading.css";
 export default {
   data() {
     return {
+      search: "",
       repos: [],
       isLoading: false,
       fullPage: true
@@ -57,6 +62,12 @@ export default {
       this.isLoading = false;
     }, 500);
   },
-  computed: {}
+  computed: {
+    filtredRepos: function() {
+      return this.repos.filter(repo => {
+        return repo.name.toLowerCase().match(this.search);
+      });
+    }
+  }
 };
 </script>
