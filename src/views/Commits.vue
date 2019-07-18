@@ -5,21 +5,38 @@
         Commits of
         <span class="text-weight-bold text-uppercase">{{repo}}</span>
       </h1>
-      <v-layout row wrap>
-        <v-flex xs12 v-for="com in commits" :key="com.sha">
-          <v-card class="pa-1 ma-2">
-            <div class="pa-2">
-              <v-avatar size="36" v-if="com.author !=null">
-                <img v-bind:src="com.author.avatar_url" />
-              </v-avatar>
-              <v-avatar size="36" v-else>
-                <v-icon color="indigo">person</v-icon>
-              </v-avatar>
-              <span class="title ml-3">{{com.commit.author.name}}</span>
-            </div>
+      <v-expansion-panel popout>
+        <v-expansion-panel-content v-for="com in commits" :key="com.sha">
+          <template v-slot:header>
+            <div>{{com.commit.message}}</div>
+          </template>
+          <v-divider></v-divider>
+          <v-card>
+            <v-layout row wrap>
+              <v-flex xs4>
+                <v-subheader>Author:</v-subheader>
+                <v-card-text>
+                  <v-avatar size="36" v-if="com.author !=null">
+                    <img v-bind:src="com.author.avatar_url" />
+                  </v-avatar>
+                  <v-avatar size="36" v-else>
+                    <v-icon color="indigo">person</v-icon>
+                  </v-avatar>
+                  <span class="pl-2">{{com.commit.author.name}}</span>
+                </v-card-text>
+              </v-flex>
+              <v-flex xs4>
+                <v-subheader>Message:</v-subheader>
+                <v-card-text>{{com.commit.message}}</v-card-text>
+              </v-flex>
+              <v-flex xs4>
+                <v-subheader>Date/Time:</v-subheader>
+                <v-card-text>{{com.commit.author.date.split("T")[0] + "/" +com.commit.author.date.split("T")[1].split("Z")[0]}}</v-card-text>
+              </v-flex>
+            </v-layout>
           </v-card>
-        </v-flex>
-      </v-layout>
+        </v-expansion-panel-content>
+      </v-expansion-panel>
     </v-container>
   </div>
 </template>
