@@ -1,10 +1,16 @@
 <template>
   <div class="Commits">
     <v-container>
-      <h1 class="subheading grey--text my-4">
-        Commits of
-        <span class="text-weight-bold text-uppercase">{{repo}}</span>
-      </h1>
+      <v-layout>
+        <h1 class="subheading grey--text my-4">
+          Commits of
+          <span class="text-weight-bold text-uppercase">{{repo}}</span>
+        </h1>
+        <v-spacer></v-spacer>
+        <v-btn flat icon class="grey--text" v-on:click="getData">
+          <v-icon>refresh</v-icon>
+        </v-btn>
+      </v-layout>
       <v-expansion-panel popout>
         <v-expansion-panel-content v-for="com in commits" :key="com.sha">
           <template v-slot:header>
@@ -47,6 +53,23 @@ export default {
     return {
       commits: []
     };
+  },
+  methods: {
+    getData: function() {
+      this.$http
+        .get(
+          "https://api.github.com/repos/kislikjeka/" + this.repo + "/commits"
+        )
+        .then(
+          response => {
+            // get body data
+            this.commits = response.body;
+          },
+          response => {
+            this.console.log(response.data); // error callback
+          }
+        );
+    }
   },
   props: ["repo"],
   created() {
