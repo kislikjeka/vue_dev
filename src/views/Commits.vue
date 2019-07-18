@@ -54,8 +54,7 @@ export default {
         {
           text: "Login",
           align: "left",
-          sortable: false,
-          value: "name"
+          value: "commit.author.name"
         },
         { text: "Message", value: "commit.message" },
         { text: "Date/Time", value: "commit.author.date" }
@@ -96,10 +95,6 @@ export default {
 };
 </script>
 <style scoped>
-.com_card {
-  border: 1px;
-  border-color: black;
-}
 </style>
 
 
