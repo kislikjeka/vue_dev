@@ -19,7 +19,7 @@
           <v-divider></v-divider>
           <v-card>
             <v-layout row wrap>
-              <v-flex xs4>
+              <v-flex xs12 md4>
                 <v-subheader>Author:</v-subheader>
                 <v-card-text>
                   <v-avatar size="36" v-if="com.author !=null">
@@ -31,11 +31,11 @@
                   <span class="pl-2">{{com.commit.author.name}}</span>
                 </v-card-text>
               </v-flex>
-              <v-flex xs4>
+              <v-flex xs12 md4>
                 <v-subheader>Message:</v-subheader>
                 <v-card-text>{{com.commit.message}}</v-card-text>
               </v-flex>
-              <v-flex xs4>
+              <v-flex xs12 md4>
                 <v-subheader>Date/Time:</v-subheader>
                 <v-card-text>{{com.commit.author.date.split("T")[0] + "/" +com.commit.author.date.split("T")[1].split("Z")[0]}}</v-card-text>
               </v-flex>
