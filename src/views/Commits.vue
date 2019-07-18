@@ -1,5 +1,6 @@
 <template>
   <div class="Commits">
+    <loading :active.sync="isLoading" :is-full-page="fullPage"></loading>
     <v-container>
       <v-layout>
         <h1 class="subheading grey--text my-4">
@@ -22,6 +23,7 @@
           ></v-text-field>
         </v-card-title>
         <v-data-table
+          must-sort
           :search="search"
           :headers="headers"
           :items="commits"
@@ -40,9 +42,14 @@
 </template>
 
 <script>
+import Loading from "vue-loading-overlay";
+// Import stylesheet
+import "vue-loading-overlay/dist/vue-loading.css";
+
 export default {
   data() {
     return {
+      isLoading: false,
       pagination: {
         rowsPerPage: -1,
         sortBy: "commit.author.date",
@@ -61,8 +68,12 @@ export default {
       ]
     };
   },
+  components: {
+    Loading
+  },
   methods: {
     getData: function() {
+      this.isLoading = true;
       this.$http
         .get(
           "https://api.github.com/repos/kislikjeka/" + this.repo + "/commits"
@@ -76,10 +87,15 @@ export default {
             this.console.log(response.data); // error callback
           }
         );
+
+      setTimeout(() => {
+        this.isLoading = false;
+      }, 500);
     }
   },
   props: ["repo"],
   created() {
+    this.isLoading = true;
     this.$http
       .get("https://api.github.com/repos/kislikjeka/" + this.repo + "/commits")
       .then(
@@ -91,6 +107,11 @@ export default {
           this.console.log(response.data); // error callback
         }
       );
+  },
+  mounted() {
+    setTimeout(() => {
+      this.isLoading = false;
+    }, 500);
   }
 };
 </script>

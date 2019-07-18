@@ -1,5 +1,6 @@
 <template>
   <div class="repositories">
+    <loading :active.sync="isLoading" :is-full-page="fullPage"></loading>
     <v-container class="my-3">
       <h1 class="subheading grey--text my-4">Repositories</h1>
       <v-layout row wrap>
@@ -24,14 +25,23 @@
 </template>
 
 <script>
+import Loading from "vue-loading-overlay";
+// Import stylesheet
+import "vue-loading-overlay/dist/vue-loading.css";
+
 export default {
   data() {
     return {
-      repos: []
+      repos: [],
+      isLoading: false,
+      fullPage: true
     };
   },
-  components: {},
+  components: {
+    Loading
+  },
   created() {
+    this.isLoading = true;
     this.$http.get("https://api.github.com/users/kislikjeka/repos").then(
       response => {
         // get body data
@@ -41,6 +51,12 @@ export default {
         this.console.log(response.data); // error callback
       }
     );
-  }
+  },
+  mounted() {
+    setTimeout(() => {
+      this.isLoading = false;
+    }, 500);
+  },
+  computed: {}
 };
 </script>
