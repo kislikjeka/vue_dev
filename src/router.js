@@ -2,6 +2,7 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import Repos from './views/Repositories.vue'
 import Commits from './views/Commits.vue'
+import NotFound from './views/NotFound.vue'
 
 Vue.use(Router)
 
@@ -21,6 +22,15 @@ export default new Router({
       component: Commits,
       props: true,
       meta: { title: "Commits" }
+    },
+    {
+      path: '/404',
+      name: '404',
+      component: NotFound
+    },
+    {
+      path: '*',
+      redirect: '/404'
     }
   ]
 })

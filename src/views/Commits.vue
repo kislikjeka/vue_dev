@@ -50,6 +50,7 @@ export default {
   data() {
     return {
       isLoading: false,
+      fullPage: true,
       pagination: {
         rowsPerPage: -1,
         sortBy: "commit.author.date",
