@@ -11,11 +11,29 @@
           <v-icon>refresh</v-icon>
         </v-btn>
       </v-layout>
-      <v-expansion-panel popout>
-        <v-expansion-panel-content v-for="com in commits" :key="com.sha">
-          <template v-slot:header>
-            <div>{{com.commit.message}}</div>
+      <v-card>
+        <v-card-title class="grey lighten-4">
+          <v-text-field
+            v-model="search"
+            append-icon="search"
+            label="Search"
+            single-line
+            hide-details
+          ></v-text-field>
+        </v-card-title>
+        <v-data-table
+          :search="search"
+          :headers="headers"
+          :items="commits"
+          :pagination.sync="pagination"
+          class="elevation-1"
+        >
+          <template v-slot:items="props">
+            <td>{{ props.item.commit.author.name}}</td>
+            <td class="text-xs-left">{{ props.item.commit.message }}</td>
+            <td class="text-xs-left">{{ new Date(props.item.commit.author.date).toLocaleString()}}</td>
           </template>
+<<<<<<< HEAD
           <v-divider></v-divider>
           <v-card>
             <v-layout row wrap>
@@ -43,6 +61,10 @@
           </v-card>
         </v-expansion-panel-content>
       </v-expansion-panel>
+=======
+        </v-data-table>
+      </v-card>
+>>>>>>> dev
     </v-container>
   </div>
 </template>
@@ -51,7 +73,23 @@
 export default {
   data() {
     return {
-      commits: []
+      pagination: {
+        rowsPerPage: -1,
+        sortBy: "commit.author.date",
+        descending: true
+      },
+      search: "",
+      commits: [],
+      headers: [
+        {
+          text: "Login",
+          align: "left",
+          sortable: false,
+          value: "name"
+        },
+        { text: "Message", value: "commit.message" },
+        { text: "Date/Time", value: "commit.author.date" }
+      ]
     };
   },
   methods: {

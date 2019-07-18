@@ -12,13 +12,15 @@ export default new Router({
     {
       path: '/',
       name: 'repos',
-      component: Repos
+      component: Repos,
+      meta: { title: "Repositories" }
     },
     {
       path: '/:repo/commits',
       name: 'commits',
       component: Commits,
-      props: true
+      props: true,
+      meta: { title: "Commits" }
     }
   ]
 })
