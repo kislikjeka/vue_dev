@@ -84,7 +84,7 @@ export default {
     },
     filtred: function() {
       return this.filtredRepos.filter(frepo => {
-        return frepo.language.match(this.select);
+        return frepo.language.search(this.select);
       });
     }
   }

@@ -5,6 +5,10 @@
     <v-content class="mx-4 mb-4">
       <router-view></router-view>
     </v-content>
+    <v-footer class="pa-4 grey lighten-2">
+      <v-spacer></v-spacer>
+      <div>&copy; {{ new Date().getFullYear() }}</div>
+    </v-footer>
   </v-app>
 </template>
 

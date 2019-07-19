@@ -7,3 +7,10 @@
     </router-link>
   </div>
 </template>
+
+<style scoped>
+a {
+  text-decoration: none;
+}
+</style>
+
