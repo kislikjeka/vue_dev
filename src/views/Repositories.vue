@@ -64,7 +64,7 @@ export default {
     this.$http.get("https://api.github.com/users/kislikjeka/repos").then(
       response => {
         // get body data
-        this.repos = response.body;
+        this.repos = response.body.reverse();
       },
       response => {
         this.console.log(response.data); // error callback
@@ -84,7 +84,7 @@ export default {
     },
     filtred: function() {
       return this.filtredRepos.filter(frepo => {
-        return frepo.language.search(this.select);
+        return frepo.language.match(this.select);
       });
     }
   }
