@@ -1,10 +1,10 @@
 <template>
   <nav>
-    <v-toolbar flat app>
-      <router-link class="text-uppercase grey--text" exact to="/">
-        <v-toolbar-title class="text-uppercase grey--text">
+    <v-toolbar flat app dark>
+      <router-link class="text-uppercase white--text" exact to="/">
+        <v-toolbar-title class="text-uppercase">
           <span class="font-weight-light">GitHub</span>
-          <span>View</span>
+          <span>Viewer</span>
         </v-toolbar-title>
       </router-link>
       <v-spacer></v-spacer>
